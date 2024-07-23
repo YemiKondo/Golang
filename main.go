@@ -1,27 +1,27 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "strconv"
+)
 
-func checkPalindrome(num int) string {
-	input_num := num
-	var remainder int
-	res := 0
-	for num > 0 {
-		remainder = num % 10
-		res = (res * 10) + remainder
-		num = num / 10
-	}
-	if input_num == res {
-		return "Palindrome"
-	} else {
-		return "Not a Palindrome"
-	}
+func isPalindrome(num int) bool {
+    str := strconv.Itoa(num)
+    for i := 0; i < len(str)/2; i++ {
+        if str[i] != str[len(str)-1-i] {
+            return false
+        }
+    }
+    return true
 }
 
 func main() {
-	fmt.Println(checkPalindrome(121))
-	fmt.Println(checkPalindrome(123))
-	fmt.Println(checkPalindrome(1331))
-	fmt.Println(checkPalindrome(1231))
-	fmt.Println(checkPalindrome(1241))
+    var num int
+    fmt.Print("Enter a number: ")
+    fmt.Scan(&num)
+    if isPalindrome(num) {
+        fmt.Println(num, "is a palindrome")
+    } else {
+        fmt.Println(num, "is not a palindrome")
+    }
 }
